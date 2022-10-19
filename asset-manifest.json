@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.5d6a6c49.chunk.css",
-    "main.js": "/static/js/main.c6039222.chunk.js",
-    "main.js.map": "/static/js/main.c6039222.chunk.js.map",
+    "main.js": "/static/js/main.a5ef6676.chunk.js",
+    "main.js.map": "/static/js/main.a5ef6676.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.72b5af52.js",
     "runtime-main.js.map": "/static/js/runtime-main.72b5af52.js.map",
-    "static/js/2.516a1f70.chunk.js": "/static/js/2.516a1f70.chunk.js",
-    "static/js/2.516a1f70.chunk.js.map": "/static/js/2.516a1f70.chunk.js.map",
+    "static/js/2.abd1aefe.chunk.js": "/static/js/2.abd1aefe.chunk.js",
+    "static/js/2.abd1aefe.chunk.js.map": "/static/js/2.abd1aefe.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.e59e347c54063baf9a116278fe1565c6.js": "/precache-manifest.e59e347c54063baf9a116278fe1565c6.js",
+    "precache-manifest.3c8ff506a7ff185e5fd635702628e780.js": "/precache-manifest.3c8ff506a7ff185e5fd635702628e780.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.5d6a6c49.chunk.css.map": "/static/css/main.5d6a6c49.chunk.css.map",
-    "static/js/2.516a1f70.chunk.js.LICENSE.txt": "/static/js/2.516a1f70.chunk.js.LICENSE.txt",
+    "static/js/2.abd1aefe.chunk.js.LICENSE.txt": "/static/js/2.abd1aefe.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/buld.jpg": "/static/media/buld.a1051a22.jpg",
     "static/media/cwoc.png": "/static/media/cwoc.404ae7bc.png",
@@ -28,6 +28,7 @@
     "static/media/harikrushn.jpg": "/static/media/harikrushn.823352fd.jpg",
     "static/media/iit.png": "/static/media/iit.36d7942a.png",
     "static/media/ino.png": "/static/media/ino.ccf88661.png",
+    "static/media/kaist.png": "/static/media/kaist.cc924d2b.png",
     "static/media/localguide.gif": "/static/media/localguide.847873a8.gif",
     "static/media/localguide.png": "/static/media/localguide.b7f903d7.png",
     "static/media/mlh-logo.svg": "/static/media/mlh-logo.bc5cfd3a.svg",
@@ -43,14 +44,16 @@
     "static/media/skillenza.png": "/static/media/skillenza.7b7a76ef.png",
     "static/media/ssec.png": "/static/media/ssec.8901092d.png",
     "static/media/ssgandhy.png": "/static/media/ssgandhy.894ef0fc.png",
+    "static/media/uci.png": "/static/media/uci.9e3f98e9.png",
     "static/media/uett.png": "/static/media/uett.b382ff59.png",
+    "static/media/university_of_minnesota.png": "/static/media/university_of_minnesota.3304f53c.png",
     "static/media/valora.jpg": "/static/media/valora.246ad3ed.jpg",
     "static/media/wrighter.jpg": "/static/media/wrighter.02fdae43.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.72b5af52.js",
-    "static/js/2.516a1f70.chunk.js",
+    "static/js/2.abd1aefe.chunk.js",
     "static/css/main.5d6a6c49.chunk.css",
-    "static/js/main.c6039222.chunk.js"
+    "static/js/main.a5ef6676.chunk.js"
   ]
 }

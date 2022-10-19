@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "18c3e1d1e51043e7b3d4ec86f08a0e1f",
+    "revision": "5ea264e10742486513ae0fa84e09a244",
     "url": "/index.html"
   },
   {
-    "revision": "02deb45f04611ac73af0",
+    "revision": "589e66698ba9c19ac90f",
     "url": "/static/css/main.5d6a6c49.chunk.css"
   },
   {
-    "revision": "a06cd0ead5a65dcba7a6",
-    "url": "/static/js/2.516a1f70.chunk.js"
+    "revision": "04f34e6c20720445616b",
+    "url": "/static/js/2.abd1aefe.chunk.js"
   },
   {
     "revision": "32eaebd0b06f4bb60d5e9e5d0e7cd13e",
-    "url": "/static/js/2.516a1f70.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.abd1aefe.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "02deb45f04611ac73af0",
-    "url": "/static/js/main.c6039222.chunk.js"
+    "revision": "589e66698ba9c19ac90f",
+    "url": "/static/js/main.a5ef6676.chunk.js"
   },
   {
     "revision": "bdb1de30c66393d88c86",
@@ -172,6 +172,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/ino.ccf88661.png"
   },
   {
+    "revision": "cc924d2be7796e82b3cd89e5d532ada9",
+    "url": "/static/media/kaist.cc924d2b.png"
+  },
+  {
     "revision": "847873a85df8045d1d51cc6cf9cc97d7",
     "url": "/static/media/localguide.847873a8.gif"
   },
@@ -232,8 +236,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/ssgandhy.894ef0fc.png"
   },
   {
+    "revision": "9e3f98e9250fa4e225382126513a62cf",
+    "url": "/static/media/uci.9e3f98e9.png"
+  },
+  {
     "revision": "b382ff59ca11f050befb523474f0687e",
     "url": "/static/media/uett.b382ff59.png"
+  },
+  {
+    "revision": "3304f53c67bc2655cacdf2d9a374ecf1",
+    "url": "/static/media/university_of_minnesota.3304f53c.png"
   },
   {
     "revision": "246ad3ede6a55b0102afa9871cfcbf21",
