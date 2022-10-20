@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.08e51b53.chunk.css",
-    "main.js": "/static/js/main.b2cf17d9.chunk.js",
-    "main.js.map": "/static/js/main.b2cf17d9.chunk.js.map",
+    "main.js": "/static/js/main.845b371e.chunk.js",
+    "main.js.map": "/static/js/main.845b371e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.72b5af52.js",
     "runtime-main.js.map": "/static/js/runtime-main.72b5af52.js.map",
-    "static/js/2.abd1aefe.chunk.js": "/static/js/2.abd1aefe.chunk.js",
-    "static/js/2.abd1aefe.chunk.js.map": "/static/js/2.abd1aefe.chunk.js.map",
+    "static/js/2.00374dfe.chunk.js": "/static/js/2.00374dfe.chunk.js",
+    "static/js/2.00374dfe.chunk.js.map": "/static/js/2.00374dfe.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.920905c6c356bd0842dd4cabc2bbe7e3.js": "/precache-manifest.920905c6c356bd0842dd4cabc2bbe7e3.js",
+    "precache-manifest.60c277a46618cb731a8720fc441a7408.js": "/precache-manifest.60c277a46618cb731a8720fc441a7408.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.08e51b53.chunk.css.map": "/static/css/main.08e51b53.chunk.css.map",
-    "static/js/2.abd1aefe.chunk.js.LICENSE.txt": "/static/js/2.abd1aefe.chunk.js.LICENSE.txt",
+    "static/js/2.00374dfe.chunk.js.LICENSE.txt": "/static/js/2.00374dfe.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/Montserrat-Regular.ee653992.ttf",
     "static/media/buld.jpg": "/static/media/buld.a1051a22.jpg",
     "static/media/cwoc.png": "/static/media/cwoc.404ae7bc.png",
@@ -24,8 +24,6 @@
     "static/media/github.png": "/static/media/github.0ba2aa20.png",
     "static/media/googleAssistant.jpg": "/static/media/googleAssistant.0c8a4c11.jpg",
     "static/media/gtu.png": "/static/media/gtu.3d9465c3.png",
-    "static/media/hackathon1.svg": "/static/media/hackathon1.7a2dbf7a.svg",
-    "static/media/harikrushn.jpg": "/static/media/harikrushn.823352fd.jpg",
     "static/media/iit.png": "/static/media/iit.36d7942a.png",
     "static/media/ino.png": "/static/media/ino.ccf88661.png",
     "static/media/kaist.png": "/static/media/kaist.cc924d2b.png",
@@ -37,13 +35,10 @@
     "static/media/monis-removebg-preview.png": "/static/media/monis-removebg-preview.521c7374.png",
     "static/media/monis.png": "/static/media/monis.20e71d12.png",
     "static/media/monis.jpg": "/static/media/monis.5724cc24.jpg",
-    "static/media/nightowls.jpg": "/static/media/nightowls.5dcd18d0.jpg",
     "static/media/pgc.png": "/static/media/pgc.a769c027.png",
     "static/media/postman.jpg": "/static/media/postman.22f11067.jpg",
     "static/media/postman.png": "/static/media/postman.c108f557.png",
     "static/media/skillenza.png": "/static/media/skillenza.7b7a76ef.png",
-    "static/media/ssec.png": "/static/media/ssec.8901092d.png",
-    "static/media/ssgandhy.png": "/static/media/ssgandhy.894ef0fc.png",
     "static/media/uci.png": "/static/media/uci.9e3f98e9.png",
     "static/media/uett.png": "/static/media/uett.b382ff59.png",
     "static/media/university_of_minnesota.png": "/static/media/university_of_minnesota.3304f53c.png",
@@ -52,8 +47,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.72b5af52.js",
-    "static/js/2.abd1aefe.chunk.js",
+    "static/js/2.00374dfe.chunk.js",
     "static/css/main.08e51b53.chunk.css",
-    "static/js/main.b2cf17d9.chunk.js"
+    "static/js/main.845b371e.chunk.js"
   ]
 }
