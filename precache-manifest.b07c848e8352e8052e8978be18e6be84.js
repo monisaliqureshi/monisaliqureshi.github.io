@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d973c77996d5cd4002a4484514588e4a",
+    "revision": "78fa211b303c41db35d77651dfe3052f",
     "url": "/index.html"
   },
   {
-    "revision": "27163f186fc2fe6246e1",
-    "url": "/static/css/main.10802641.chunk.css"
+    "revision": "767ab5698b6a1c505827",
+    "url": "/static/css/main.b9b890b5.chunk.css"
   },
   {
-    "revision": "46efcab9fa2caa38555a",
-    "url": "/static/js/2.a84447ce.chunk.js"
+    "revision": "b718a2af9239a4270a41",
+    "url": "/static/js/2.3e3c8c4d.chunk.js"
   },
   {
     "revision": "c21d579849576bf6a47550572ff70f62",
-    "url": "/static/js/2.a84447ce.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.3e3c8c4d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "27163f186fc2fe6246e1",
-    "url": "/static/js/main.0cece170.chunk.js"
+    "revision": "767ab5698b6a1c505827",
+    "url": "/static/js/main.d3f15abf.chunk.js"
   },
   {
-    "revision": "ac77e099ff5f6a571a95",
-    "url": "/static/js/runtime-main.19f404fe.js"
+    "revision": "31fe52e0bb68f83722f1",
+    "url": "/static/js/runtime-main.7094e3bb.js"
   },
   {
     "revision": "21f233e19402cc4a66866a7f31191f0d",
@@ -176,6 +176,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/localguide.b7f903d7.png"
   },
   {
+    "revision": "71514f7bd7e4d2d239016cfc617bd4cf",
+    "url": "/static/media/misis.71514f7b.png"
+  },
+  {
     "revision": "bc5cfd3a887013976863247e66c389a2",
     "url": "/static/media/mlh-logo.bc5cfd3a.svg"
   },
@@ -192,12 +196,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/monis-removebg-preview.521c7374.png"
   },
   {
-    "revision": "20e71d12f97d342347396758195af581",
-    "url": "/static/media/monis.20e71d12.png"
+    "revision": "0f9e8300ccefbc052052603448e8240d",
+    "url": "/static/media/monis.0f9e8300.jpg"
   },
   {
-    "revision": "5724cc246d6c62ac1bbfbea85fe19ff4",
-    "url": "/static/media/monis.5724cc24.jpg"
+    "revision": "8d30a9a6442c76657cfb0660f2a52104",
+    "url": "/static/media/monis.8d30a9a6.png"
+  },
+  {
+    "revision": "dce5191790621b5e424478ca69c47f55",
+    "url": "/static/media/monis.png:Zone.dce51917.Identifier"
   },
   {
     "revision": "a769c027a8d9576f3f4d1a56a0f712a0",
