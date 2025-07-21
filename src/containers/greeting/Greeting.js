@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Greeting.css";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
-import { greeting } from "../../portfolio";
+import { getGreeting } from "../../portfolio"; // ✅ fetch function
 import { Fade } from "react-reveal";
 import { useHistory } from "react-router-dom";
 import FeelingProud from "./FeelingProud";
@@ -11,12 +11,26 @@ export default function Greeting(props) {
   const theme = props.theme;
   const history = useHistory();
 
+  const [greeting, setGreeting] = useState(null);
+
+  useEffect(() => {
+    getGreeting().then(setGreeting);
+  }, []);
+
   const styles = style({
     backgroundColor: `${theme.accentBright}`,
     ":hover": {
       boxShadow: `0 5px 15px ${theme.accentBright}`,
     },
   });
+
+  if (!greeting) {
+    return (
+      <div className="greet-main" id="greeting">
+        <p style={{ color: theme.text }}>Loading greeting...</p>
+      </div>
+    );
+  }
 
   return (
     <Fade bottom duration={2000} distance="40px">

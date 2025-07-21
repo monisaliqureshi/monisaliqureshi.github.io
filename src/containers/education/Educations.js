@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Educations.css";
 import DegreeCard from "../../components/degreeCard/DegreeCard.js";
-import { degrees } from "../../portfolio";
+import { getDegrees } from "../../portfolio"; // updated import
 import { Fade } from "react-reveal";
 
 function Educations(props) {
   const theme = props.theme;
+  const [degrees, setDegrees] = useState(null);
+
+  useEffect(() => {
+    getDegrees().then((res) => {
+      setDegrees(res.degrees || []);
+    });
+  }, []);
 
   return (
     <div className="main" id="educations">
@@ -17,9 +24,13 @@ function Educations(props) {
         </Fade>
       </div>
       <div className="educations-body-div">
-        {degrees.degrees.map((degree) => {
-          return <DegreeCard degree={degree} theme={theme} />;
-        })}
+        {degrees ? (
+          degrees.map((degree) => (
+            <DegreeCard key={degree.title} degree={degree} theme={theme} />
+          ))
+        ) : (
+          <p style={{ color: theme.text }}>Loading degrees...</p>
+        )}
       </div>
     </div>
   );

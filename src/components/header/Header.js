@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { Fade } from "react-reveal";
 import { NavLink, Link } from "react-router-dom";
-import { greeting, settings } from "../../portfolio.js";
-import { CgSun } from "react-icons/cg/";
+import { getGreeting, getSettings } from "../../portfolio.js";
+import { CgSun } from "react-icons/cg";
 import { HiMoon } from "react-icons/hi";
 import { style } from "glamor";
 
 function Header(props) {
   const theme = props.theme;
+
+  const [greeting, setGreeting] = useState({});
+  const [settings, setSettings] = useState({});
+  const [currTheme, setCurrTheme] = useState(props.theme.name);
+
+  useEffect(() => {
+    getGreeting().then(setGreeting);
+    getSettings().then(setSettings);
+  }, []);
 
   const styles = style({
     cursor: "pointer",
@@ -31,22 +40,6 @@ function Header(props) {
     },
   });
 
-  const link = settings.isSplash ? "/splash" : "home";
-
-  const [currTheme, setCurrTheme] = useState(props.theme);
-
-  function changeTheme() {
-    if (currTheme === "light") {
-      props.setTheme("dark");
-      localStorage.setItem("theme", "dark");
-      setCurrTheme("dark");
-    } else {
-      props.setTheme("light");
-      localStorage.setItem("theme", "light");
-      setCurrTheme("light");
-    }
-  }
-
   const icon =
     props.theme.name === "dark" ? (
       <HiMoon
@@ -62,6 +55,15 @@ function Header(props) {
       />
     );
 
+  const link = settings.isSplash ? "/splash" : "/home";
+
+  function changeTheme() {
+    const nextTheme = currTheme === "light" ? "dark" : "light";
+    props.setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    setCurrTheme(nextTheme);
+  }
+
   return (
     <Fade top duration={1000} distance="20px">
       <div>
@@ -69,7 +71,7 @@ function Header(props) {
           <NavLink to={link} tag={Link} className="logo">
             <span style={{ color: theme.text }}></span>
             <span className="logo-name" style={{ color: theme.text }}>
-              {greeting.logo_name}
+              {greeting.logo_name || "Portfolio"}
             </span>
             <span style={{ color: theme.text }}></span>
           </NavLink>

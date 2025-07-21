@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ExperienceCard from "../../components/experienceCard/ExperienceCard.js";
 import "./ExperienceAccordion.css";
 import { Accordion, Panel } from "baseui/accordion";
 import { DarkTheme, LightTheme, ThemeProvider } from "baseui";
+import { getExperience } from "../../portfolio"; // ✅ API import
 
 function ExperienceAccordion(props) {
   const theme = props.theme;
+  const [sections, setSections] = useState([]);
+
+  useEffect(() => {
+    getExperience().then((data) => {
+      setSections(data.sections || []);
+    });
+  }, []);
 
   return (
     <div className="experience-accord">
       <ThemeProvider theme={theme.name === "light" ? LightTheme : DarkTheme}>
         <Accordion onChange={({ expanded }) => console.log(expanded)}>
-          {props.sections.map((section) => {
+          {sections.map((section) => {
             return (
               <Panel
                 className="accord-panel"
@@ -20,7 +28,11 @@ function ExperienceAccordion(props) {
               >
                 {section["experiences"].map((experience) => {
                   return (
-                    <ExperienceCard experience={experience} theme={theme} />
+                    <ExperienceCard
+                      key={experience.title}
+                      experience={experience}
+                      theme={theme}
+                    />
                   );
                 })}
               </Panel>

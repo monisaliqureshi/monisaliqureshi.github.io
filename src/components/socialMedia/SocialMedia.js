@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SocialMedia.css";
-import { socialMediaLinks } from "../../portfolio";
+import { getSocialLinks } from "../../portfolio";
 
-export default function socialMedia() {
+export default function SocialMedia() {
+  const [socialMediaLinks, setSocialMediaLinks] = useState(null);
+
+  useEffect(() => {
+    getSocialLinks().then(setSocialMediaLinks);
+  }, []);
+
+  if (!socialMediaLinks) return null;
+
   return (
     <div className="social-media-div">
       <a

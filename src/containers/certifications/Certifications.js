@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Certifications.css";
 import { Fade } from "react-reveal";
-import { certifications } from "../../portfolio";
+import { getCertifications } from "../../portfolio"; // updated import
 import CertificationCard from "../../components/certificationCard/CertificationCard";
 
 function Certifications(props) {
   const theme = props.theme;
+  const [certs, setCerts] = useState([]);
+
+  useEffect(() => {
+    getCertifications().then((res) => {
+      setCerts(res.certifications || []);
+    });
+  }, []);
+
   return (
     <div className="main" id="certs">
       <div className="certs-header-div">
@@ -16,9 +24,17 @@ function Certifications(props) {
         </Fade>
       </div>
       <div className="certs-body-div">
-        {certifications.certifications.map((cert) => {
-          return <CertificationCard certificate={cert} theme={theme} />;
-        })}
+        {certs.length > 0 ? (
+          certs.map((cert) => (
+            <CertificationCard
+              key={cert.title}
+              certificate={cert}
+              theme={theme}
+            />
+          ))
+        ) : (
+          <p style={{ color: theme.text }}>Loading certifications...</p>
+        )}
       </div>
     </div>
   );

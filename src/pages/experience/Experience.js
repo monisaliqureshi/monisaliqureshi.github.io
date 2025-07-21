@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import ExperienceAccordion from "../../containers/experienceAccordion/ExperienceAccordion.js";
 import "./Experience.css";
-import { experience } from "../../portfolio.js";
+import { getExperience } from "../../portfolio.js";
 import { Fade } from "react-reveal";
 import ExperienceImg from "./ExperienceImg";
 
 function Experience(props) {
   const theme = props.theme;
-  console.log(props.setTheme);
+  const [experience, setExperience] = useState(null);
+
+  useEffect(() => {
+    getExperience().then(setExperience);
+  }, []);
+
+  if (!experience) {
+    return (
+      <div className="experience-main">
+        <Header theme={theme} setTheme={props.setTheme} />
+        <div className="basic-experience">
+          <p style={{ color: theme.text, textAlign: "center" }}>
+            Loading experience...
+          </p>
+        </div>
+        <Footer theme={props.theme} onToggle={props.onToggle} />
+      </div>
+    );
+  }
+
   return (
     <div className="experience-main">
       <Header theme={theme} setTheme={props.setTheme} />
@@ -26,23 +45,27 @@ function Experience(props) {
               >
                 {experience.title}
               </h1>
-              <h3
-                className="experience-heading-sub-text"
-                style={{ color: theme.text }}
-              >
-                {experience["subtitle"]}
-              </h3>
-              <p
-                className="experience-header-detail-text subTitle"
-                style={{ color: theme.secondaryText }}
-              >
-                {experience["description"]}
-              </p>
+              {experience.subtitle && (
+                <h3
+                  className="experience-heading-sub-text"
+                  style={{ color: theme.text }}
+                >
+                  {experience.subtitle}
+                </h3>
+              )}
+              {experience.description && (
+                <p
+                  className="experience-header-detail-text subTitle"
+                  style={{ color: theme.secondaryText }}
+                >
+                  {experience.description}
+                </p>
+              )}
             </div>
           </div>
         </Fade>
       </div>
-      <ExperienceAccordion sections={experience["sections"]} theme={theme} />
+      <ExperienceAccordion sections={experience.sections} theme={theme} />
       <Footer theme={props.theme} onToggle={props.onToggle} />
     </div>
   );

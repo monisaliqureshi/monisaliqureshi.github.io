@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import SocialMedia from "../../components/socialMedia/SocialMedia";
 import BlogsImg from "./BlogsImg";
 import { Fade } from "react-reveal";
 import "./ContactComponent.css";
-import { greeting, contactPageData } from "../../portfolio.js";
+import { getGreeting, getContactPageData } from "../../portfolio.js";
 import { style } from "glamor";
-
-const ContactData = contactPageData.contactSection;
-const blogSection = contactPageData.blogSection;
 
 function Contact(props) {
   const theme = props.theme;
+
+  const [greeting, setGreeting] = useState(null);
+  const [contactPageData, setContactPageData] = useState(null);
+
+  useEffect(() => {
+    getGreeting().then(setGreeting);
+    getContactPageData().then(setContactPageData);
+  }, []);
+
+  if (!greeting || !contactPageData) {
+    return (
+      <div className="contact-main">
+        <p style={{ color: theme.text, textAlign: "center" }}>
+          Loading contact info...
+        </p>
+      </div>
+    );
+  }
+
+  const ContactData = contactPageData.contactSection;
+  const blogSection = contactPageData.blogSection;
 
   const styles = style({
     backgroundColor: `${theme.accentBright}`,
@@ -30,7 +48,7 @@ function Contact(props) {
             <div className="contact-heading-img-div">
               <img
                 className="profile-pic"
-                src={require(`../../assests/images/${ContactData["profile_image_path"]}`)}
+                src={require(`../../assests/images/${ContactData.profile_image_path}`)}
                 alt=""
                 width={600}
                 height={600}
@@ -41,13 +59,13 @@ function Contact(props) {
                 className="contact-heading-text"
                 style={{ color: theme.text }}
               >
-                {ContactData["title"]}
+                {ContactData.title}
               </h1>
               <p
                 className="contact-header-detail-text subTitle"
                 style={{ color: theme.secondaryText }}
               >
-                {ContactData["description"]}
+                {ContactData.description}
               </p>
               <SocialMedia />
               <br />
@@ -57,6 +75,7 @@ function Contact(props) {
                 className="general-btn"
                 href={greeting.resumeLink}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 See my Resume
               </a>
@@ -67,16 +86,22 @@ function Contact(props) {
           <div className="blog-heading-div">
             <div className="blog-heading-text-div">
               <h1 className="blog-heading-text" style={{ color: theme.text }}>
-                {blogSection["title"]}
+                {blogSection.title}
               </h1>
               <p
                 className="blog-header-detail-text subTitle"
                 style={{ color: theme.secondaryText }}
               >
-                {blogSection["subtitle"]}
+                {blogSection.subtitle}
               </p>
               <div className="blogsite-btn-div">
-                <a {...styles} className="general-btn" href={blogSection.link}>
+                <a
+                  {...styles}
+                  className="general-btn"
+                  href={blogSection.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Hire Me at Upwork
                 </a>
               </div>

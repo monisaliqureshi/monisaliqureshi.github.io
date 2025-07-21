@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import { Fade } from "react-reveal";
-import { projectsHeader, projects } from "../../portfolio.js";
+import { getProjectsHeader, getProjects } from "../../portfolio.js";
 import "./Projects.css";
 import ProjectsImg from "./ProjectsImg";
 import { style } from "glamor";
@@ -17,6 +17,28 @@ function Projects(props) {
       boxShadow: `0 5px 15px ${theme.accentBright}`,
     },
   });
+
+  const [projectsHeader, setProjectsHeader] = useState(null);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    getProjectsHeader().then(setProjectsHeader);
+    getProjects().then((res) => setProjects(res.data || []));
+  }, []);
+
+  if (!projectsHeader) {
+    return (
+      <div className="projects-main">
+        <Header theme={theme} setTheme={props.setTheme} />
+        <div className="basic-projects">
+          <p style={{ color: theme.text, textAlign: "center" }}>
+            Loading projects...
+          </p>
+        </div>
+        <Footer theme={props.theme} onToggle={props.onToggle} />
+      </div>
+    );
+  }
 
   return (
     <div className="projects-main">
@@ -38,16 +60,16 @@ function Projects(props) {
                 className="projects-header-detail-text subTitle"
                 style={{ color: theme.secondaryText }}
               >
-                {projectsHeader["description"]}
+                {projectsHeader.description}
               </p>
             </div>
           </div>
         </Fade>
       </div>
       <div className="repo-cards-div-main">
-        {projects.data.map((repo) => {
-          return <ProjectCard repo={repo} theme={theme} />;
-        })}
+        {projects.map((repo) => (
+          <ProjectCard repo={repo} theme={theme} key={repo.id} />
+        ))}
       </div>
       <br />
       <br />
@@ -56,6 +78,8 @@ function Projects(props) {
         {...styles}
         className="general-btn"
         href="https://github.com/monisaliqureshi"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         More Projects (Github)
       </a>
