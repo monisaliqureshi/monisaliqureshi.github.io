@@ -1,11 +1,11 @@
 {
   "private": true,
-  "homepage": "http://monisaliqureshi.github.io/",
   "version": "1.0.0",
+  "homepage": "http://monisaliqureshi.github.io/",
   "scripts": {
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b gh-pages -d build",
+    "deploy": "gh-pages -r origin-github -b gh-pages -d build",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test"
