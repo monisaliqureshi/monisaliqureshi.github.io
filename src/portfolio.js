@@ -36,40 +36,39 @@ const skills = {
       title: "Solution Design Engineer",
       fileName: "FullStackImg",
       skills: [
-        "⚡ Requirement and Information gathering from problem statement.",
-        "⚡ Research and Development",
-        "⚡ Prepare System Requirements Specification document",
-        "⚡ Defining workflow and designing architecture",
-        "⚡ Purposing development and deployment strategy",
+        "⚡ R&D on problem-specific AI solutions (Face/Plate/Object Recognition)",
+        "⚡ Requirement gathering and defining deployment-ready architectures",
+        "⚡ Prepare System Requirements & Technical Specifications",
+        "⚡ Microservices-based system design using FastAPI & Docker",
+        "⚡ Define end-to-end pipelines from prototyping to production deployment",
       ],
       softwareSkills: [
         {
-          skillName: "Research",
-          fontAwesomeClassname: "fas fa-search",
+          skillName: "AI Solution Design",
+          fontAwesomeClassname: "fas fa-cogs",
           style: {
-            color: "#E34F26",
+            color: "#00BFFF",
           },
         },
         {
-          skillName: "Brainstroming",
-          fontAwesomeClassname: "fas fa-brain",
-          style: {
-            color: "#1572B6",
-          },
-        },
-        {
-          skillName: "FlowChart",
+          skillName: "Workflow Architecture",
           fontAwesomeClassname: "fas fa-project-diagram",
           style: {
-            backgroundColor: "#FFFFFF",
-            color: "#F7DF1E",
+            color: "#9b59b6",
           },
         },
         {
           skillName: "Documentation",
           fontAwesomeClassname: "fas fa-book",
           style: {
-            color: "#439743",
+            color: "#2ecc71",
+          },
+        },
+        {
+          skillName: "Technical Writing",
+          fontAwesomeClassname: "fas fa-pencil-alt",
+          style: {
+            color: "#e67e22",
           },
         },
       ],
@@ -78,39 +77,11 @@ const skills = {
       title: "Cloud Infra-Architecture",
       fileName: "CloudInfraImg",
       skills: [
-        "⚡ Experience working on multiple cloud platforms",
-        "⚡ Experience hosting and managing websites",
-        "⚡ Experience with Continuous Integration of AI models",
+        "⚡ Deploying AI systems on cloud and edge environments (Jetson Nano, AWS)",
+        "⚡ Containerization with Docker for consistent deployments",
+        "⚡ Experience with CI/CD for AI and API systems using GitHub Actions",
       ],
       softwareSkills: [
-        {
-          skillName: "AWS",
-          fontAwesomeClassname: "simple-icons:amazonaws",
-          style: {
-            color: "#FF9900",
-          },
-        },
-        {
-          skillName: "Azure",
-          fontAwesomeClassname: "simple-icons:azure",
-          style: {
-            color: "#38AFBB",
-          },
-        },
-        {
-          skillName: "Heroku",
-          fontAwesomeClassname: "simple-icons:heroku",
-          style: {
-            color: "#6863A6",
-          },
-        },
-        {
-          skillName: "MongoDB",
-          fontAwesomeClassname: "simple-icons:mongodb",
-          style: {
-            color: "#47A248",
-          },
-        },
         {
           skillName: "Docker",
           fontAwesomeClassname: "simple-icons:docker",
@@ -119,7 +90,28 @@ const skills = {
           },
         },
         {
-          skillName: "GitHub",
+          skillName: "AWS",
+          fontAwesomeClassname: "simple-icons:amazonaws",
+          style: {
+            color: "#FF9900",
+          },
+        },
+        {
+          skillName: "FastAPI",
+          fontAwesomeClassname: "simple-icons:fastapi",
+          style: {
+            color: "#05998B",
+          },
+        },
+        {
+          skillName: "PostgreSQL",
+          fontAwesomeClassname: "simple-icons:postgresql",
+          style: {
+            color: "#336791",
+          },
+        },
+        {
+          skillName: "GitHub Actions",
           fontAwesomeClassname: "simple-icons:githubactions",
           style: {
             color: "#5b77ef",
@@ -131,34 +123,46 @@ const skills = {
       title: "AI Software Development",
       fileName: "CloudInfraImg",
       skills: [
-        "⚡ Research and Development of AI Models",
-        "⚡ Testing and Customization of Models",
-        "⚡ Model Deployment on cloud",
-        "⚡ Data Scraping and Information Gathering",
-        "⚡ RESTful API design, development, testing, deployment and integration",
-        "⚡ Data Analytics and Predictive Analysis",
-        "⚡ Reports Generation and Plotting",
+        "⚡ Building and deploying real-time AI systems for smart city applications",
+        "⚡ Computer vision models: YOLOv8, PaddleOCR, FaceNet",
+        "⚡ API-driven architecture using FastAPI for OCR, LPR, and face recognition",
+        "⚡ Data scraping, text/image analysis, and automated report generation",
+        "⚡ Experience with OpenAI Whisper, EasyOCR, and TensorRT",
       ],
       softwareSkills: [
         {
           skillName: "Python",
           fontAwesomeClassname: "simple-icons:python",
           style: {
-            color: "#FF9900",
+            color: "#306998",
+          },
+        },
+        {
+          skillName: "YOLOv8",
+          fontAwesomeClassname: "fas fa-bullseye",
+          style: {
+            color: "#e74c3c",
           },
         },
         {
           skillName: "OpenCV",
           fontAwesomeClassname: "simple-icons:opencv",
           style: {
-            color: "#38AFBB",
+            color: "#5C3EE8",
+          },
+        },
+        {
+          skillName: "PaddleOCR",
+          fontAwesomeClassname: "fas fa-eye",
+          style: {
+            color: "#27ae60",
           },
         },
         {
           skillName: "FastAPI",
           fontAwesomeClassname: "simple-icons:fastapi",
           style: {
-            color: "#6863A6",
+            color: "#05998B",
           },
         },
         {
@@ -169,31 +173,17 @@ const skills = {
           },
         },
         {
-          skillName: "Flask",
-          fontAwesomeClassname: "simple-icons:flask",
-          style: {
-            color: "#1488C6",
-          },
-        },
-        {
-          skillName: "Selenium",
-          fontAwesomeClassname: "simple-icons:selenium",
-          style: {
-            color: "#5b77ef",
-          },
-        },
-        {
           skillName: "Pandas",
           fontAwesomeClassname: "simple-icons:pandas",
           style: {
-            color: "#5b77ef",
+            color: "#130754",
           },
         },
         {
           skillName: "Plotly",
           fontAwesomeClassname: "simple-icons:plotly",
           style: {
-            color: "#5b77ef",
+            color: "#3f4cbb",
           },
         },
       ],
@@ -207,13 +197,14 @@ const degrees = {
       title: "NUST MISIS University, Moscow, Russia",
       subtitle: "Masters in Data Science",
       logo_path: "misis.png",
-      alt_name: "National University of Science and Technology, MISIS, Moscow, Russia",
+      alt_name:
+        "National University of Science and Technology, MISIS, Moscow, Russia",
       duration: "2023 - 2025",
       descriptions: [
-        // "⚡ I'm currently pursuing my bachelors in Information Technology."
-        "⚡ I am studying core courses of Data Science",
-        "⚡ Completed a project of Licence Plate Recognition on Live Stream and API Deployment.",
-        "⚡ Working on Smart Safe City Project as a Thesis.",
+        "⚡ Specialized in AI, Computer Vision, and System Architecture with distinction (Red Diploma).",
+        "⚡ Thesis: Comparative Study and Implementation of License Plate Detection and Recognition for Smart Cities.",
+        "⚡ Built a production-ready LPR API using YOLOv8, PaddleOCR, FastAPI, Docker, and PostgreSQL.",
+        "⚡ Led real-time AI deployment projects, integrating OCR, facial recognition, and traffic analytics.",
       ],
       website_link: "https://misis.ru",
     },
@@ -224,10 +215,10 @@ const degrees = {
       alt_name: "UET Taxila",
       duration: "2016 - 2020",
       descriptions: [
-        // "⚡ I'm currently pursuing my bachelors in Information Technology."
-        "⚡ I have studied core subjects like Data Structures, DBMS, Networking, Security, etc.",
-        "⚡ I have also completed various embedded design courses related to Micro-Controller , Arduino , Raspberry Pi, etc.",
-        "⚡ I have implemented several semester projects based on what I've learnt under my Computer Engineering course. ",
+        "⚡ Gained strong foundations in Data Structures, Operating Systems, Databases, Networking, and Digital Logic.",
+        "⚡ Completed coursework and projects on embedded systems including Microcontrollers, Arduino, and Raspberry Pi.",
+        "⚡ Final Year Project: Predicting Perceived Stress Scores using EEG headbands – published at IEEE IBCAST 2021.",
+        "⚡ Practiced real-world project development including automation and sensor-based systems.",
       ],
       website_link: "http://www.uettaxila.edu.pk/",
     },
@@ -238,7 +229,8 @@ const degrees = {
       alt_name: "PGC",
       duration: "2013 - 2016",
       descriptions: [
-        "⚡ I have studied science subjects like Physics, Maths, Computer Science, etc.",
+        "⚡ Studied foundational science subjects including Physics, Mathematics, and Computer Science.",
+        "⚡ Developed early interest in programming, algorithms, and logical problem-solving.",
       ],
       website_link: "http://www.pgc.edu/",
     },
@@ -358,18 +350,17 @@ const experience = {
           company: "DELTA Technology Consulting (Pvt) Ltd.",
           company_url: "https://dtcpak.com/",
           logo_path: "dtcpak.png",
-          duration: "Dec 2020 - Jan 2024",
+          duration: "Dec 2020 - July 2021",
           location: "Islamabad, Pakistan",
           descriptions: [
-            "- Writing scripts and scraping tools for data scraping from public websites.",
-            "- Data Cleaning, Mining and Annotation.",
-            "- Finding useful information and patterns.",
-            "- Writing scripts in python using Pandas and plotly for data visualization and report generation.",
-            "- Compilation of perfect reports and pipeline the flow through API (FastAPI).",
-            "- API Integration with dashboard and deployment on local server.",
-            "- Handling POC (Proof of Concept).",
+            "- Led backend development for AI-driven applications including facial recognition and LPR systems.",
+            "- Developed modular FastAPI-based microservices for real-time computer vision tasks.",
+            "- Designed and deployed REST APIs for license plate and facial recognition workflows.",
+            "- Created intelligent data pipelines: from scraping and annotation to analytics and reporting.",
+            "- Integrated PaddleOCR, YOLOv8, and FastAPI for production-grade OCR solutions.",
+            "- Deployed systems on local servers with Docker and Uvicorn + Nginx stack.",
+            "- Delivered Proof-of-Concepts (PoC) for smart city surveillance and access control.",
           ],
-          // "I worked on the Dashboard project which helps users track their activities while using Walo Application. I also worked on Ocean Inventory Application and it's Admin panel Backend as well as on Ocean Inventory Admin Front-end using React and also worked on Walo Admin Backend.",
           color: "#0071C5",
         },
         {
@@ -380,21 +371,16 @@ const experience = {
           duration: "Aug 2021 - Present",
           location: "Luton, England, United Kingdom (Remote)",
           descriptions: [
-            "Working on State-of-the-art Facial Recognition System",
-
-            "- Market research for AI based products and analyzing competition.",
-            "- Software Requirement Specification Document Preparation.",
-            "- Finalizing features for MVP (Minimum Viable Product).",
-            "- Research and Development for AI models and techniques.",
-            "- Prototyping for each feature and testing.",
-            "- Development of APIs (using FastAPI) backed with AI models for specific feature.",
-            "- Integration with Database (MongoDB) and performing CURD operations.",
-            "- Protecting endpoints using authentication methods like JWT token and cookies.",
-            "- Deployment on local server using Uvicorn, Nginx load balancer.",
-            "- Integration with Frontend.",
-            "- Documentation and user guide.",
+            "- Spearheaded R&D for a smart city-ready facial recognition and crowd analytics platform.",
+            "- Authored Software Requirement Specification (SRS) and MVP scoping documents.",
+            "- Developed secure, scalable FastAPI endpoints integrated with MongoDB and PostgreSQL.",
+            "- Implemented state-of-the-art AI models for face matching, verification, and live tracking.",
+            "- Built facial authentication APIs with JWT-based authorization and session cookies.",
+            "- Designed dual-auth biometric systems combining FaceNet with OCR-based verification.",
+            "- Deployed services with Docker, orchestrated behind Nginx reverse proxy for stability.",
+            "- Coordinated frontend integration, testing pipelines, and deployment guides.",
+            "- Contributed to smart security applications including weapon room access control and payroll attendance systems.",
           ],
-          // "Created Front end of Yearn Financial Mutual Funds website. also degined simple web application for better user experience, designed DB Schemas as well.",
           color: "#ee3c26",
         },
       ],
@@ -434,32 +420,17 @@ const projects = {
       name: "Licence Plate Recognition API and Live Stream",
       url: "https://license-plate.streamlit.app/",
       descriptions: [
-        "- Detection of Licence plate using Yolo based Trained Model.",
-        "- Recognition of detected licence plate using OCR (EasyOCR).",
-        "- Development of Demo Frontend using Streamlit.",
-        "- Deployment on AWS EC2 and Integration with Database.",
+        "- Real-time LPR system using YOLOv8 for detection and PaddleOCR for recognition.",
+        "- Modular FastAPI backend with endpoints for detection, OCR, and logging.",
+        "- Streamlit-based demo frontend for quick testing and validation.",
+        "- Deployed on AWS EC2 with Docker, integrated with PostgreSQL for storage.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Tensorflow",
-          iconifyClass: "logos-tensorflow",
-        },
-        {
-          name: "HTML",
-          iconifyClass: "logos-html-5",
-        },
-        {
-          name: "JS",
-          iconifyClass: "logos-javascript",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Tensorflow", iconifyClass: "logos-tensorflow" },
+        { name: "HTML", iconifyClass: "logos-html-5" },
+        { name: "JS", iconifyClass: "logos-javascript" },
       ],
     },
     {
@@ -467,32 +438,16 @@ const projects = {
       name: "Face Liveness Detection - Anti-Spoofing",
       url: "#",
       descriptions: [
-        "- It can be used in KYC (Know Your Customer)",
-        "- It can be used along with ID Document OCR and ID Verification.",
-        "- It can be used in Face Recognition based Lock Systems.",
-        "- In other apps where real person needs to be verify.",
+        "- Developed anti-spoofing system using CNN to detect print and replay attacks.",
+        "- Useful in secure KYC, access control, and online identity verification.",
+        "- Designed to integrate with face recognition and ID verification pipelines.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Tensorflow",
-          iconifyClass: "logos-tensorflow",
-        },
-        {
-          name: "HTML",
-          iconifyClass: "logos-html-5",
-        },
-        {
-          name: "JS",
-          iconifyClass: "logos-javascript",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Tensorflow", iconifyClass: "logos-tensorflow" },
+        { name: "HTML", iconifyClass: "logos-html-5" },
+        { name: "JS", iconifyClass: "logos-javascript" },
       ],
     },
     {
@@ -500,32 +455,17 @@ const projects = {
       name: "Event Photo Album Sorting | Face Recognition AI",
       url: "https://www.loom.com/share/165ad86545a74479894b09b2672191b8",
       descriptions: [
-        "- Indexing of Photos using Face Recognition.",
-        "- Identification of Persons in Photos.",
-        "- Making unique album for each person.",
-        "- Moving photos to respective album.",
+        "- AI-powered tool for indexing event photos using FaceNet.",
+        "- Automatically detects and clusters photos by individual identity.",
+        "- Generates separate albums per person and organizes them.",
+        "- Supports large image batches with face embedding caching.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Tensorflow",
-          iconifyClass: "logos-tensorflow",
-        },
-        {
-          name: "HTML",
-          iconifyClass: "logos-html-5",
-        },
-        {
-          name: "JS",
-          iconifyClass: "logos-javascript",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Tensorflow", iconifyClass: "logos-tensorflow" },
+        { name: "HTML", iconifyClass: "logos-html-5" },
+        { name: "JS", iconifyClass: "logos-javascript" },
       ],
     },
     {
@@ -533,34 +473,17 @@ const projects = {
       name: "Face Recognition API",
       url: "https://frsapi-b721264c7dcd.herokuapp.com/docs",
       descriptions: [
-        "- It is based on CURD. Enroll, Update, Remove, Verify (1:1) and also Matching (1:N).",
-        "- It can be used where Login, Authentication or user verification required.",
-        "- It can be integrate-able with any Platform (It is Based on REST API.",
-        "- It can be used in Attendance System, Video Survillance System and Monitoring etc.",
-        "- It can be deploy on Raspberry Pi for smart Door Locks using Facial Recognition.",
-        "- It maintains Logs for each request.",
+        "- CRUD operations for face data: Enroll, Update, Remove, Verify (1:1), and Match (1:N).",
+        "- Designed for secure biometric authentication systems.",
+        "- REST API compatible with any platform; supports logs and analytics.",
+        "- Deployed on Heroku and tested with Raspberry Pi + webcam setup.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Dlib",
-          iconifyClass: "logos-stdlib",
-        },
-        {
-          name: "Raspberry Pi",
-          iconifyClass: "logos-raspberry-pi",
-        },
-        {
-          name: "Twilio",
-          iconifyClass: "logos-twilio",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Dlib", iconifyClass: "logos-stdlib" },
+        { name: "Raspberry Pi", iconifyClass: "logos-raspberry-pi" },
+        { name: "Twilio", iconifyClass: "logos-twilio" },
       ],
     },
     {
@@ -568,31 +491,16 @@ const projects = {
       name: "Facial Expression Recognition",
       url: "#",
       descriptions: [
-        "- It can be used to analyze facial expression.",
-        "- Mood Analysis i.e. Driver Mood Analysis, Student facial Expression during class etc.",
-        "- It is based on RestAPI and be integrate-able easily.",
+        "- Emotion recognition model using CNN and facial landmark detection.",
+        "- Applications: driver alertness monitoring, classroom engagement, HR analytics.",
+        "- REST API service for easy third-party integration.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Dlib",
-          iconifyClass: "logos-stdlib",
-        },
-        {
-          name: "Tensorflow",
-          iconifyClass: "logos-tensorflow",
-        },
-        {
-          name: "SQlite",
-          iconifyClass: "logos-sqlite",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Dlib", iconifyClass: "logos-stdlib" },
+        { name: "Tensorflow", iconifyClass: "logos-tensorflow" },
+        { name: "SQlite", iconifyClass: "logos-sqlite" },
       ],
     },
     {
@@ -600,35 +508,16 @@ const projects = {
       name: "Object Detection",
       url: "#",
       descriptions: [
-        "- This system can be used for Survillance.",
-        "- For Footfall count.",
-        "- Monitoring.",
-        "- Personal Analysis.",
-        "- Public Privacy in CCTV cameras (Recording by bluring cars, persons etc.).",
-        "- Good to use in any custom application based on requirements.",
-        "- Available in Rest API.",
+        "- YOLOv8-based detection system for surveillance, footfall counting, and privacy protection.",
+        "- Includes features like people/car blurring for GDPR compliance.",
+        "- Available via REST API for integration in smart city and retail apps.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Yolo",
-          iconifyClass: "logos-yolo",
-        },
-        {
-          name: "Pytorch",
-          iconifyClass: "logos-pytorch",
-        },
-        {
-          name: "SQlite",
-          iconifyClass: "logos-sqlite",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Yolo", iconifyClass: "logos-yolo" },
+        { name: "Pytorch", iconifyClass: "logos-pytorch" },
+        { name: "SQlite", iconifyClass: "logos-sqlite" },
       ],
     },
     {
@@ -636,28 +525,15 @@ const projects = {
       name: "ID Documents OCR",
       url: "#",
       descriptions: [
-        "- Reading textual data from ID Document.",
-        "- It can be used in KYC (Know Your Customer).",
-        "- Custom ID document OCR can be developed for Passport etc.",
-        "- Available Rest API for Integration.",
+        "- Custom OCR for extracting structured data from ID documents (e.g., NIC, passport).",
+        "- Suitable for KYC, onboarding, and document verification.",
+        "- REST API for seamless backend integration.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Pytorch",
-          iconifyClass: "logos-pytorch",
-        },
-        {
-          name: "SQlite",
-          iconifyClass: "logos-sqlite",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Pytorch", iconifyClass: "logos-pytorch" },
+        { name: "SQlite", iconifyClass: "logos-sqlite" },
       ],
     },
     {
@@ -665,27 +541,15 @@ const projects = {
       name: "Auto Subtitle generation from Audio/Video file",
       url: "#",
       descriptions: [
-        "- It supports more than 15 languages.",
-        "- It can be used for transcription purpose.",
-        "- It can be used for mobile call monitoring (Survillance).",
-        "- It can be used for Podcast subtitle.",
-        "- It can be integrate-able with multi-language translation by adding text to speech.",
-        "- It works offline on the system.",
-        "- Available in Rest API",
+        "- Whisper-based transcription for multilingual audio/video content.",
+        "- Offline support for surveillance, podcasting, call center monitoring.",
+        "- Extendable to TTS/NLP pipelines with multi-language translation support.",
+        "- Delivered as REST API microservice.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "Pytorch",
-          iconifyClass: "logos-pytorch",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "Pytorch", iconifyClass: "logos-pytorch" },
       ],
     },
     {
@@ -693,24 +557,14 @@ const projects = {
       name: "Universal Automation Tool/Bot",
       url: "#",
       descriptions: [
-        "- Auto ticket Booking, making Purchases from online store, monitoring sites.",
-        "- Posting on Social Media, Getting Details from social media.",
-        "- Scrapping from web.",
-        "- Automating Whatsapp, Facebook, Instagram etc.",
+        "- Automation toolkit for web scraping, booking, and task scheduling.",
+        "- Supports WhatsApp, Facebook, Instagram, and e-commerce platforms.",
+        "- Built with Selenium, integrates easily into custom workflows.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "Selenium",
-          iconifyClass: "logos-selenium",
-        },
-        {
-          name: "SQlite",
-          iconifyClass: "logos-sqlite",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "Selenium", iconifyClass: "logos-selenium" },
+        { name: "SQlite", iconifyClass: "logos-sqlite" },
       ],
     },
     {
@@ -718,26 +572,14 @@ const projects = {
       name: "Live QR Code Scanner API",
       url: "#",
       descriptions: [
-        "- It can be used in Mobile Apps.",
-        "- It can be used as Web App",
+        "- Real-time QR code reading API using webcam or video input.",
+        "- Can be embedded into mobile/web platforms for ID scanning or payment systems.",
       ],
       languages: [
-        {
-          name: "Python",
-          iconifyClass: "logos-python",
-        },
-        {
-          name: "OpenCV",
-          iconifyClass: "logos-opencv",
-        },
-        {
-          name: "HTML",
-          iconifyClass: "logos-html-5",
-        },
-        {
-          name: "JS",
-          iconifyClass: "logos-javascript",
-        },
+        { name: "Python", iconifyClass: "logos-python" },
+        { name: "OpenCV", iconifyClass: "logos-opencv" },
+        { name: "HTML", iconifyClass: "logos-html-5" },
+        { name: "JS", iconifyClass: "logos-javascript" },
       ],
     },
   ],
