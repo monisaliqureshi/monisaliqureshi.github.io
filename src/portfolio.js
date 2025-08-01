@@ -15,7 +15,7 @@ const greeting = {
   full_name: "Monis Ali",
   subTitle: "AI Engineer, Aspiring Data Scientist 🔥. Python Developer.",
   resumeLink:
-    "https://drive.google.com/file/d/1d744yb5DDJShma_AovHRe2Xe8THwN9a5/view?usp=sharing",
+    "https://drive.google.com/file/d/1Ln2PRsNbcdeyDQaEAJF8F9NSK_NwLDWC/view?usp=sharing",
   mail: "mailto:monisaliqureshi@gmail.com",
 };
 
