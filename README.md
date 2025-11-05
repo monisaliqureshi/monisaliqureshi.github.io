@@ -1,63 +1,113 @@
-# PortfolioV2
+np# Portfolio Next.js - Monis Ali
 
-<!-- ![PortfolioV2](/images/portfolio1.gif) -->
+Modern AI Engineer portfolio built with Next.js 14, TypeScript, Tailwind CSS, and Supabase.
 
-### A clean portfolio template. (Readme will be updated soon)
+## 🚀 Quick Start
 
-# Sections
+### Prerequisites
+- Node.js 18+
+- **pnpm** (recommended) or npm
+- Supabase account
 
-- Home
-- Education and Certificates
-- Experience
-- Projects
-- Contact and Resume
+### Installation
 
-# How To Use
+```bash
+# Install pnpm globally (if not already installed)
+npm install -g pnpm
 
-- Clone this repository (or fork, then clone your fork :) )
-- Run `npm i`
-- Check it out using `npm start`
+# Install dependencies
+pnpm install
 
-# How Do I Customize
+# Copy environment variables
+copy .env.local.example .env.local
+# Add your Supabase credentials to .env.local
 
-- Replace `homepage` in package.json to your domain name or `https://<username>.github.io`
-- In `src/portfolio.js` you can add your personal portfolio details.
-- In `src/theme.js` you can change the theme colors. You can change between Light and Dark theme with the theme switch on the header.
+# Start development server
+pnpm dev
+```
 
-# How to Deploy
+Open [http://localhost:3000](http://localhost:3000)
 
-- Once you are done with your setup and have successfully completed all steps above, you need to put your website online!
-- I highly recommend using [Github Pages](https://create-react-app.dev/docs/deployment/#github-pages) to achieve this the EASIEST WAY.
-- To deploy your website, you have two options. First you need to create a github repository with the name `<your-github-username>.github.io`. Please don't give it any other name.
-- Now, you need to generate a production build and deploy the website.
+### Database Setup
 
-**Option 1:**
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Run SQL files in SQL Editor (in order):
+   - `supabase/schema.sql`
+   - `supabase/seed.sql`
+   - `supabase/seed-projects-certs.sql`
+3. Create admin user in Authentication > Users
 
-- Run `npm run build` to generate the production build folder.
-- Enter the build folder, `git init` and push the generated code to the `master` branch of your new repository. That's it. Done.
-  You may need to `git init` and force push at every new build.
+### Available Scripts
 
-**Option 2 (will not work with [user pages](https://docs.github.com/en/github/working-with-github-pages/about-github-pages)):**
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run ESLint
+```
 
-- Run `npm run deploy` to build and create a branch called `gh-pages`. It will push the `build` files to that branch.
-- The last step in deploying is to enable `Github Pages` in settings of the repository and select `gh-pages` branch.
+## 📁 Project Structure
 
-Now, your website is successfully deployed and you can visit it at `<your-github-username>.github.io`.
+```
+├── app/                      # Next.js app directory
+│   ├── api/                 # API routes (backend)
+│   ├── admin/               # Admin dashboard
+│   ├── home/                # Portfolio page
+│   └── layout.tsx           # Root layout
+├── components/              # React components
+│   ├── sections/            # Page sections
+│   ├── Header.tsx
+│   └── Footer.tsx
+├── lib/                     # Utilities
+│   ├── supabase.ts         # Supabase client
+│   └── api.ts              # Data fetching
+└── supabase/               # Database schema & seeds
+```
 
-# Technologies used 🛠️
+## 🔐 Admin Access
 
-- [React](https://reactjs.org/)
-- [graphql](https://graphql.org/)
-- [apollo-boost](https://www.apollographql.com/docs/react/get-started/)
-- [baseui](https://github.com/uber/baseweb)
-- [react-reveal](https://www.react-reveal.com/)
-- [styled-components](https://styled-components.com/)
+Login at `/admin/login` with your Supabase credentials to manage all content:
+- ✅ Greeting & Profile
+- ✅ Skills
+- ✅ Experience
+- ✅ Projects
+- ✅ Education
+- ✅ Certifications
+- ✅ Contact Info
+- ✅ Social Media Links
 
-# illustrations 🍥
+## 🌐 URLs
 
-- [UnDraw](https://undraw.co/illustrations)
+- **Portfolio**: http://localhost:3000
+- **Admin Login**: http://localhost:3000/admin/login
+- **Admin Dashboard**: http://localhost:3000/admin/dashboard
 
-# References
+## 📚 Documentation
 
-Based on https://github.com/ashutosh1919/masterPortfolio/ and https://github.com/saadpasta/developerFolio
-Illustrations: https://undraw.co/
+See [SETUP.md](./SETUP.md) for detailed setup instructions.
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **Animations**: Framer Motion
+- **Data Fetching**: SWR
+- **Backend**: Next.js API Routes
+- **Database**: Supabase (PostgreSQL)
+- **Auth**: Supabase Auth
+- **Package Manager**: pnpm
+
+## ✨ Features
+
+- ✅ Same UI/Design from original portfolio
+- ✅ Full-stack with Next.js 14
+- ✅ TypeScript for type safety
+- ✅ Supabase backend & auth
+- ✅ Admin dashboard (CRUD operations)
+- ✅ Dark/Light theme toggle
+- ✅ Responsive design
+- ✅ SEO optimized
+- ✅ Production ready
+
+## 📝 License
+
+MIT

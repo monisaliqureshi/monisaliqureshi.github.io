@@ -5,11 +5,12 @@
 /.pnp
 /build
 .pnp.js
+pnpm-lock.yaml
 
 # testing
 /coverage
 
-
+.next
 
 # misc
 .DS_Store
