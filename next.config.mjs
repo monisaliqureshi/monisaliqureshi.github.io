@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', // <-- Top-level! Enables static export
   typescript: {
     ignoreBuildErrors: true,
-    output: 'export',
   },
   images: {
     unoptimized: true,
