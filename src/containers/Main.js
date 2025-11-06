@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Switch, HashRouter } from "react-router-dom";
-import Home from "../pages/home/HomeComponent";
-import Splash from "../pages/splash/Splash";
-import Education from "../pages/education/EducationComponent";
-import Experience from "../pages/experience/Experience";
-import Contact from "../pages/contact/ContactComponent";
-import Projects from "../pages/projects/Projects";
+import Home from "../page-components/home/HomeComponent";
+import Splash from "../page-components/splash/Splash";
+import Education from "../page-components/education/EducationComponent";
+import Experience from "../page-components/experience/Experience";
+import Contact from "../page-components/contact/ContactComponent";
+import Projects from "../page-components/projects/Projects";
 import { settings } from "../portfolio.js";
 
 export default function Main(propss) {
