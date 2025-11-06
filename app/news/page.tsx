@@ -23,6 +23,9 @@ export default function NewsPage() {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [touchStartX, setTouchStartX] = useState<number | null>(null)
 
   useEffect(() => {
     fetchNews()
@@ -56,7 +59,48 @@ export default function NewsPage() {
   const closeNews = () => {
     setSelectedNews(null)
     document.body.style.overflow = 'unset'
+    setLightboxOpen(false)
   }
+
+  // Compose the images array for the lightbox: include thumbnail first if present, then photos
+  const lightboxImages = selectedNews
+    ? [
+        ...(selectedNews.thumbnail_filename ? [selectedNews.thumbnail_filename] : []),
+        ...(Array.isArray(selectedNews.photos) ? selectedNews.photos : []),
+      ]
+    : []
+
+  const openLightboxAt = (index: number) => {
+    if (!selectedNews) return
+    setLightboxIndex(index)
+    setLightboxOpen(true)
+  }
+
+  const closeLightbox = () => {
+    setLightboxOpen(false)
+  }
+
+  const nextImage = () => {
+    if (!lightboxImages.length) return
+    setLightboxIndex((prev) => (prev + 1) % lightboxImages.length)
+  }
+
+  const prevImage = () => {
+    if (!lightboxImages.length) return
+    setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length)
+  }
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxOpen) return
+      if (e.key === 'Escape') closeLightbox()
+      if (e.key === 'ArrowRight') nextImage()
+      if (e.key === 'ArrowLeft') prevImage()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [lightboxOpen, lightboxImages.length])
 
   if (loading) {
     return (
@@ -202,14 +246,19 @@ export default function NewsPage() {
 
                 {/* Header Image */}
                 {selectedNews.thumbnail_filename && (
-                  <div className="relative h-96 overflow-hidden">
+                  <button
+                    type="button"
+                    className="relative h-96 overflow-hidden w-full text-left"
+                    onClick={() => openLightboxAt(0)}
+                    aria-label="Open image gallery"
+                  >
                     <img
                       src={`/assests/images/${selectedNews.thumbnail_filename}`}
                       alt={selectedNews.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-                  </div>
+                  </button>
                 )}
 
                 {/* Content */}
@@ -262,17 +311,89 @@ export default function NewsPage() {
                             className="relative aspect-square rounded-xl overflow-hidden border-2 border-cyan-500/20 
                                      hover:border-cyan-500/50 transition-all duration-300 group"
                           >
-                            <img
-                              src={`/assests/images/${photo}`}
-                              alt={`Gallery ${index + 1}`}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
+                            <button
+                              type="button"
+                              className="absolute inset-0"
+                              onClick={() => openLightboxAt((selectedNews.thumbnail_filename ? 1 : 0) + index)}
+                              aria-label={`Open image ${index + 1}`}
+                            >
+                              <img
+                                src={`/assests/images/${photo}`}
+                                alt={`Gallery ${index + 1}`}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                              />
+                            </button>
                           </motion.div>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Lightbox Slider */}
+      <AnimatePresence>
+        {lightboxOpen && selectedNews && lightboxImages.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center"
+            onClick={closeLightbox}
+            onTouchStart={(e) => setTouchStartX(e.touches[0].clientX)}
+            onTouchEnd={(e) => {
+              if (touchStartX === null) return
+              const delta = e.changedTouches[0].clientX - touchStartX
+              if (Math.abs(delta) > 50) {
+                if (delta < 0) nextImage()
+                else prevImage()
+              }
+              setTouchStartX(null)
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.98, y: 10, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.98, y: 10, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+              className="relative max-w-5xl w-[92vw] aspect-[16/9] glass rounded-xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={`/assests/images/${lightboxImages[lightboxIndex]}`}
+                alt={`Image ${lightboxIndex + 1} of ${lightboxImages.length}`}
+                className="w-full h-full object-contain bg-black/50"
+                draggable={false}
+              />
+
+              {/* Controls */}
+              <button
+                onClick={prevImage}
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-gray-900/50 border border-white/20 text-white hover:bg-gray-800/70"
+              >
+                ‹
+              </button>
+              <button
+                onClick={nextImage}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-gray-900/50 border border-white/20 text-white hover:bg-gray-800/70"
+              >
+                ›
+              </button>
+              <button
+                onClick={closeLightbox}
+                aria-label="Close gallery"
+                className="absolute top-3 right-3 p-2 rounded-full bg-red-500/20 border border-red-400/40 text-red-200 hover:bg-red-500/30"
+              >
+                ✕
+              </button>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/50 text-white text-sm">
+                {lightboxIndex + 1} / {lightboxImages.length}
               </div>
             </motion.div>
           </motion.div>
