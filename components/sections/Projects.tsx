@@ -37,7 +37,7 @@ export default function Projects() {
               {project.thumbnail_filename && (
                 <div className="mb-4 -mx-6 -mt-6">
                   <img
-                    src={`/assests/images/${project.thumbnail_filename}`}
+                    src={project.thumbnail_filename && project.thumbnail_filename.startsWith('data:') ? project.thumbnail_filename : `/assests/images/${project.thumbnail_filename}`}
                     alt={`${project.name} thumbnail`}
                     className="w-full h-48 object-cover rounded-t-2xl border-b-2 border-purple-500/20"
                   />

@@ -25,6 +25,9 @@ export default function NewsManagement() {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
   const [editingId, setEditingId] = useState<string | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [busyMessage, setBusyMessage] = useState('')
+  const [toastMessage, setToastMessage] = useState('')
   const [formData, setFormData] = useState<NewsItem>({
     title: '',
     subtitle: '',
@@ -63,8 +66,9 @@ export default function NewsManagement() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     try {
+      setBusy(true)
+      setBusyMessage(editingId ? 'Updating news...' : 'Adding news...')
       const url = '/api/news'
       const method = editingId ? 'PUT' : 'POST'
       const body = editingId ? { ...formData, id: editingId } : formData
@@ -79,9 +83,14 @@ export default function NewsManagement() {
 
       await fetchNews()
       resetForm()
+      setToastMessage(editingId ? 'News updated' : 'News added')
+      setTimeout(() => setToastMessage(''), 3000)
     } catch (error) {
       console.error('Failed to save news:', error)
       alert('Failed to save news item')
+    } finally {
+      setBusy(false)
+      setBusyMessage('')
     }
   }
 
@@ -102,14 +111,20 @@ export default function NewsManagement() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this news item?')) return
-
     try {
+      setBusy(true)
+      setBusyMessage('Deleting news...')
       const response = await fetch(`/api/news?id=${id}`, { method: 'DELETE' })
       if (!response.ok) throw new Error('Failed to delete news')
       await fetchNews()
+      setToastMessage('News deleted')
+      setTimeout(() => setToastMessage(''), 3000)
     } catch (error) {
       console.error('Failed to delete news:', error)
       alert('Failed to delete news item')
+    } finally {
+      setBusy(false)
+      setBusyMessage('')
     }
   }
 
@@ -138,7 +153,21 @@ export default function NewsManagement() {
 
   return (
     <div className="min-h-screen p-8">
+      {/* Global busy overlay */}
+      {busy && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="flex flex-col items-center gap-3 bg-gray-900/70 p-6 rounded-lg">
+            <div className="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+            <div className="text-white">{busyMessage || 'Processing...'}</div>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto">
+        {/* Toast */}
+        {toastMessage && (
+          <div className="fixed top-6 right-6 z-60 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg">{toastMessage}</div>
+        )}
         {/* Header with Back Button */}
         <div className="mb-8 flex items-center gap-4">
           <button
@@ -326,7 +355,7 @@ export default function NewsManagement() {
                     <div className="flex items-start gap-4">
                       {item.thumbnail_filename && (
                         <img
-                          src={`/assests/images/${item.thumbnail_filename}`}
+                          src={item.thumbnail_filename && item.thumbnail_filename.startsWith('data:') ? item.thumbnail_filename : `/assests/images/${item.thumbnail_filename}`}
                           alt={item.title}
                           className="w-24 h-24 rounded-lg object-cover border-2 border-cyan-500/20"
                         />

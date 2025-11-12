@@ -1,7 +1,8 @@
-'use client'
+"use client"
 
 import { useState } from 'react'
 import { FiUpload, FiX, FiImage } from 'react-icons/fi'
+import { compressFileToDataUrl } from './imageHelpers'
 
 interface ImageUploadProps {
   label: string
@@ -13,8 +14,12 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ label, value, onChange, placeholder, required }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false)
-  const [preview, setPreview] = useState(value ? `/assests/images/${value}` : '')
+  const [preview, setPreview] = useState(
+    value ? (value.startsWith('data:') ? value : `/assests/images/${value}`) : ''
+  )
   const [error, setError] = useState('')
+  const [statusMessage, setStatusMessage] = useState('')
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -36,24 +41,41 @@ export default function ImageUpload({ label, value, onChange, placeholder, requi
 
     setError('')
     setUploading(true)
+    setStatusMessage('')
+    setShowSuccess(false)
 
     try {
-      const formData = new FormData()
-      formData.append('file', file)
+      // Compress / resize image to be <= 5MB (if needed)
+      setStatusMessage('Reducing size...')
+      const { dataUrl: compressedDataUrl, mime, base64 } = await compressFileToDataUrl(file, 5 * 1024 * 1024)
 
-      const response = await fetch('/api/upload', {
+      const payload = {
+        filename: file.name.replace(/\s/g, '_'),
+        mime,
+        base64,
+      }
+
+      setStatusMessage('Uploading...')
+      const response = await fetch('/api/upload-base64', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       })
 
       if (!response.ok) {
-        const data = await response.json()
+        const data = await response.json().catch(() => ({}))
         throw new Error(data.error || 'Upload failed')
       }
 
       const data = await response.json()
-      onChange(data.filename)
-      setPreview(data.path)
+      // We return base64 data URI for preview and store it as the value
+      const dataUri = compressedDataUrl
+      onChange(dataUri)
+      setPreview(dataUri)
+      setShowSuccess(true)
+      setStatusMessage('')
+      // hide success after 3s
+      setTimeout(() => setShowSuccess(false), 3000)
     } catch (err: any) {
       setError(err.message || 'Failed to upload image')
       console.error('Upload error:', err)
@@ -91,6 +113,11 @@ export default function ImageUpload({ label, value, onChange, placeholder, requi
               <FiX className="text-sm" />
             </button>
           </div>
+        )}
+
+        {/* Inline success message */}
+        {showSuccess && (
+          <div className="text-sm text-green-400">Uploaded</div>
         )}
 
         {/* Upload Button */}
@@ -146,6 +173,16 @@ export default function ImageUpload({ label, value, onChange, placeholder, requi
           Supported: JPG, PNG, SVG, WebP • Max size: 5MB
         </p>
       </div>
+
+      {/* Full overlay while uploading/compressing to block interactions */}
+      {uploading && (
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/30 rounded-lg">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+            <div className="text-sm text-white">{statusMessage || 'Uploading...'}</div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

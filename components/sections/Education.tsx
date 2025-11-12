@@ -35,7 +35,7 @@ export default function Education() {
                 <div className="flex-shrink-0">
                   {edu.logo_filename ? (
                     <img
-                      src={`/assests/images/${edu.logo_filename}`}
+                      src={edu.logo_filename && edu.logo_filename.startsWith('data:') ? edu.logo_filename : `/assests/images/${edu.logo_filename}`}
                       alt={`${edu.title} logo`}
                       className="w-20 h-20 rounded-lg object-contain bg-gray-800/50 p-2 border border-purple-500/30"
                     />

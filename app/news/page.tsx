@@ -154,7 +154,7 @@ export default function NewsPage() {
                 {item.thumbnail_filename ? (
                   <div className="relative h-56 overflow-hidden">
                     <motion.img
-                      src={`/assests/images/${item.thumbnail_filename}`}
+                      src={item.thumbnail_filename && item.thumbnail_filename.startsWith('data:') ? item.thumbnail_filename : `/assests/images/${item.thumbnail_filename}`}
                       alt={item.title}
                       className="w-full h-full object-cover"
                       whileHover={{ scale: 1.1 }}
@@ -253,7 +253,7 @@ export default function NewsPage() {
                     aria-label="Open image gallery"
                   >
                     <img
-                      src={`/assests/images/${selectedNews.thumbnail_filename}`}
+                      src={selectedNews.thumbnail_filename && selectedNews.thumbnail_filename.startsWith('data:') ? selectedNews.thumbnail_filename : `/assests/images/${selectedNews.thumbnail_filename}`}
                       alt={selectedNews.title}
                       className="w-full h-full object-cover"
                     />
@@ -318,7 +318,7 @@ export default function NewsPage() {
                               aria-label={`Open image ${index + 1}`}
                             >
                               <img
-                                src={`/assests/images/${photo}`}
+                                src={photo && photo.startsWith('data:') ? photo : `/assests/images/${photo}`}
                                 alt={`Gallery ${index + 1}`}
                                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                               />
@@ -364,7 +364,7 @@ export default function NewsPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={`/assests/images/${lightboxImages[lightboxIndex]}`}
+                src={lightboxImages[lightboxIndex] && lightboxImages[lightboxIndex].startsWith('data:') ? lightboxImages[lightboxIndex] : `/assests/images/${lightboxImages[lightboxIndex]}`}
                 alt={`Image ${lightboxIndex + 1} of ${lightboxImages.length}`}
                 className="w-full h-full object-contain bg-black/50"
                 draggable={false}
