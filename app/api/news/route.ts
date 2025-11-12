@@ -103,7 +103,11 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   try {
     const body = await request.json()
-    const { id, ...updateData } = body
+    const { id, photosMeta, ...updateData } = body
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID is required for update' }, { status: 400 })
+    }
 
     const { data, error } = await supabaseAdmin
       .from('news')
@@ -112,11 +116,19 @@ export async function PUT(request: Request) {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error('Supabase update error (news):', error)
+      return NextResponse.json({ error: error.message || 'Failed to update news' }, { status: 500 })
+    }
+
+    if (!data) {
+      return NextResponse.json({ error: 'News item not found' }, { status: 404 })
+    }
 
     return NextResponse.json(data)
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update news' }, { status: 500 })
+    console.error('Unexpected error in PUT /api/news:', error)
+    return NextResponse.json({ error: (error as any)?.message || 'Failed to update news' }, { status: 500 })
   }
 }
 

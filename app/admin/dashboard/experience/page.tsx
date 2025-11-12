@@ -207,12 +207,16 @@ export default function ExperienceAdmin() {
                 />
               </div>
 
-              <ImageUpload
-                label="Company Logo"
-                value={formData.logo_filename}
-                onChange={(filename) => setFormData({ ...formData, logo_filename: filename })}
-                placeholder="e.g., google-logo.png"
-              />
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Company Logo URL</label>
+                <input
+                  type="url"
+                  value={formData.logo_filename}
+                  onChange={(e) => setFormData({ ...formData, logo_filename: e.target.value })}
+                  className="w-full px-4 py-2 glass rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none transition-all text-white placeholder-gray-500"
+                  placeholder="https://example.com/logo.png"
+                />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>

@@ -33,11 +33,17 @@ export default function Experience() {
               <div className="flex items-start gap-6">
                 <div className="flex-shrink-0">
                   {exp.logo_filename ? (
-                    <img
-                      src={exp.logo_filename && exp.logo_filename.startsWith('data:') ? exp.logo_filename : `/assests/images/${exp.logo_filename}`}
-                      alt={`${exp.company} logo`}
-                      className="w-16 h-16 rounded-lg object-contain bg-gray-800/50 p-2 border border-cyan-500/30"
-                    />
+                    (() => {
+                      const v = exp.logo_filename
+                      const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                      return (
+                        <img
+                          src={src}
+                          alt={`${exp.company} logo`}
+                          className="w-16 h-16 rounded-lg object-contain bg-gray-800/50 p-2 border border-cyan-500/30"
+                        />
+                      )
+                    })()
                   ) : (
                     <div className="w-16 h-16 rounded-lg flex items-center justify-center bg-gradient-to-br from-cyan-500 to-purple-600 text-white text-2xl font-bold">
                       {exp.company.charAt(0)}

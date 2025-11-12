@@ -1,10 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import useSWR, { mutate } from 'swr'
 import { useRouter } from 'next/navigation'
 import { FiPlus, FiEdit, FiTrash2, FiSave, FiX } from 'react-icons/fi'
 import ImageUpload from '@/components/admin/ImageUpload'
 import MultipleImageUpload from '@/components/admin/MultipleImageUpload'
+import CloudinaryUpload from '@/components/admin/CloudinaryUpload'
+import CloudinaryMulti from '@/components/admin/CloudinaryMulti'
 import RichTextEditor from '@/components/admin/RichTextEditor'
 
 interface NewsItem {
@@ -22,13 +25,12 @@ interface NewsItem {
 
 export default function NewsManagement() {
   const router = useRouter()
-  const [newsItems, setNewsItems] = useState<NewsItem[]>([])
-  const [loading, setLoading] = useState(true)
+  const { data: newsItems, isLoading } = useSWR('news', () => fetch('/api/news').then(r => r.json()), { revalidateOnFocus: false })
   const [editingId, setEditingId] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const [busyMessage, setBusyMessage] = useState('')
   const [toastMessage, setToastMessage] = useState('')
-  const [formData, setFormData] = useState<NewsItem>({
+  const [formData, setFormData] = useState<NewsItem & { photosMeta?: { url: string; public_id?: string }[] }>({
     title: '',
     subtitle: '',
     date_from: '',
@@ -36,33 +38,12 @@ export default function NewsManagement() {
     location: '',
     thumbnail_filename: '',
     photos: [],
+    photosMeta: [],
     description: '',
     order_index: 0,
   })
 
-  useEffect(() => {
-    fetchNews()
-  }, [])
-
-  const fetchNews = async () => {
-    try {
-      const response = await fetch('/api/news')
-      const data = await response.json()
-      
-      // Ensure we always set an array, even if there's an error or unexpected data
-      if (Array.isArray(data)) {
-        setNewsItems(data)
-      } else {
-        console.error('API returned non-array data:', data)
-        setNewsItems([])
-      }
-    } catch (error) {
-      console.error('Failed to fetch news:', error)
-      setNewsItems([])
-    } finally {
-      setLoading(false)
-    }
-  }
+  // News list is loaded via SWR - section-level loading shown below
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -71,7 +52,14 @@ export default function NewsManagement() {
       setBusyMessage(editingId ? 'Updating news...' : 'Adding news...')
       const url = '/api/news'
       const method = editingId ? 'PUT' : 'POST'
-      const body = editingId ? { ...formData, id: editingId } : formData
+      // Normalize photos to array of urls for API compatibility
+      const normalized = {
+        ...formData,
+        photos: (formData.photosMeta && formData.photosMeta.length > 0)
+          ? formData.photosMeta.map((m) => m.url)
+          : formData.photos || [],
+      }
+      const body = editingId ? { ...normalized, id: editingId } : normalized
 
       const response = await fetch(url, {
         method,
@@ -81,7 +69,7 @@ export default function NewsManagement() {
 
       if (!response.ok) throw new Error('Failed to save news')
 
-      await fetchNews()
+      await mutate('news')
       resetForm()
       setToastMessage(editingId ? 'News updated' : 'News added')
       setTimeout(() => setToastMessage(''), 3000)
@@ -104,6 +92,7 @@ export default function NewsManagement() {
       location: item.location,
       thumbnail_filename: item.thumbnail_filename,
       photos: Array.isArray(item.photos) ? item.photos : [],
+      photosMeta: Array.isArray(item.photos) ? item.photos.map((p: string) => ({ url: p })) : [],
       description: item.description,
       order_index: item.order_index,
     })
@@ -116,7 +105,7 @@ export default function NewsManagement() {
       setBusyMessage('Deleting news...')
       const response = await fetch(`/api/news?id=${id}`, { method: 'DELETE' })
       if (!response.ok) throw new Error('Failed to delete news')
-      await fetchNews()
+      await mutate('news')
       setToastMessage('News deleted')
       setTimeout(() => setToastMessage(''), 3000)
     } catch (error) {
@@ -138,18 +127,13 @@ export default function NewsManagement() {
       location: '',
       thumbnail_filename: '',
       photos: [],
+      photosMeta: [],
       description: '',
-      order_index: newsItems.length,
+      order_index: newsItems?.length || 0,
     })
   }
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-cyan-400 text-xl">Loading...</div>
-      </div>
-    )
-  }
+  // Show page-level minimal skeleton until form is ready; we'll show section spinner for list
 
   return (
     <div className="min-h-screen p-8">
@@ -285,20 +269,29 @@ export default function NewsManagement() {
               </div>
             </div>
 
-            {/* Thumbnail */}
-            <ImageUpload
-              value={formData.thumbnail_filename}
-              onChange={(filename) => setFormData({ ...formData, thumbnail_filename: filename })}
+            {/* Thumbnail - Cloudinary upload */}
+            <CloudinaryUpload
               label="Thumbnail Image"
+              value={formData.thumbnail_filename}
+              onUpload={(url) => setFormData({ ...formData, thumbnail_filename: url })}
             />
 
-            {/* Photos */}
-            <MultipleImageUpload
-              value={formData.photos}
-              onChange={(photos) => setFormData({ ...formData, photos })}
-              label="Gallery Photos"
-              maxFiles={20}
-            />
+            {/* Photos - Cloudinary multi upload (use MultipleImageUpload for local-base64 flow previously)
+                For now we will accept an array of URLs produced via CloudinaryUpload when uploading individual photos. */}
+            <div>
+              <label className="block text-sm font-medium text-cyan-400 mb-2">Gallery Photos</label>
+              <div className="space-y-2">
+                <CloudinaryMulti
+                  label="Add Photos to Gallery"
+                  value={formData.photosMeta || formData.photos.map((p) => ({ url: p }))}
+                  newsId={editingId}
+                  onChange={(photosMeta) => {
+                    // update both photosMeta and photos (urls) for submission compatibility
+                    setFormData({ ...formData, photosMeta, photos: photosMeta.map((m) => m.url) })
+                  }}
+                />
+              </div>
+            </div>
 
             {/* Description */}
             <RichTextEditor
@@ -337,14 +330,18 @@ export default function NewsManagement() {
         {/* News List */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-cyan-400 mb-4">
-            Existing News ({newsItems.length})
+            Existing News ({newsItems?.length || 0})
           </h2>
-          {newsItems.length === 0 ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center p-8">
+              <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : newsItems?.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
               No news items yet. Add your first one above!
             </div>
           ) : (
-            newsItems.map((item) => (
+            newsItems.map((item: any) => (
               <div
                 key={item.id}
                 className="p-6 rounded-xl border-2 border-purple-500/20 bg-gray-900/30 
@@ -354,11 +351,17 @@ export default function NewsManagement() {
                   <div className="flex-1">
                     <div className="flex items-start gap-4">
                       {item.thumbnail_filename && (
-                        <img
-                          src={item.thumbnail_filename && item.thumbnail_filename.startsWith('data:') ? item.thumbnail_filename : `/assests/images/${item.thumbnail_filename}`}
-                          alt={item.title}
-                          className="w-24 h-24 rounded-lg object-cover border-2 border-cyan-500/20"
-                        />
+                        (() => {
+                          const v = item.thumbnail_filename
+                          const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                          return (
+                            <img
+                              src={src}
+                              alt={item.title}
+                              className="w-24 h-24 rounded-lg object-cover border-2 border-cyan-500/20"
+                            />
+                          )
+                        })()
                       )}
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-white mb-1">

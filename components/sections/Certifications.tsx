@@ -36,11 +36,17 @@ export default function Certifications() {
             >
               <div className="flex items-center gap-4 mb-4">
                 {cert.logo_filename ? (
-                  <img
-                    src={cert.logo_filename && cert.logo_filename.startsWith('data:') ? cert.logo_filename : `/assests/images/${cert.logo_filename}`}
-                    alt={`${cert.title} logo`}
-                    className="w-12 h-12 rounded-lg object-contain bg-gray-800/50 p-1 border border-cyan-500/30"
-                  />
+                      (() => {
+                        const v = cert.logo_filename
+                        const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                        return (
+                          <img
+                            src={src}
+                            alt={cert.title}
+                            className="w-12 h-12 rounded-lg object-contain bg-gray-800/50 p-1 border border-cyan-500/30"
+                          />
+                        )
+                      })()
                 ) : (
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center text-2xl">
                     📜

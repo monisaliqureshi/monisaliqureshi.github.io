@@ -153,13 +153,19 @@ export default function NewsPage() {
                 {/* Thumbnail */}
                 {item.thumbnail_filename ? (
                   <div className="relative h-56 overflow-hidden">
-                    <motion.img
-                      src={item.thumbnail_filename && item.thumbnail_filename.startsWith('data:') ? item.thumbnail_filename : `/assests/images/${item.thumbnail_filename}`}
-                      alt={item.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
-                    />
+                    {(() => {
+                      const v = item.thumbnail_filename
+                      const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                      return (
+                        <motion.img
+                          src={src}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      )
+                    })()}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
                   </div>
                 ) : (
@@ -252,11 +258,17 @@ export default function NewsPage() {
                     onClick={() => openLightboxAt(0)}
                     aria-label="Open image gallery"
                   >
-                    <img
-                      src={selectedNews.thumbnail_filename && selectedNews.thumbnail_filename.startsWith('data:') ? selectedNews.thumbnail_filename : `/assests/images/${selectedNews.thumbnail_filename}`}
-                      alt={selectedNews.title}
-                      className="w-full h-full object-cover"
-                    />
+                    {(() => {
+                      const v = selectedNews.thumbnail_filename
+                      const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                      return (
+                        <img
+                          src={src}
+                          alt={selectedNews.title}
+                          className="w-full h-full object-cover"
+                        />
+                      )
+                    })()}
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
                   </button>
                 )}
@@ -317,11 +329,17 @@ export default function NewsPage() {
                               onClick={() => openLightboxAt((selectedNews.thumbnail_filename ? 1 : 0) + index)}
                               aria-label={`Open image ${index + 1}`}
                             >
-                              <img
-                                src={photo && photo.startsWith('data:') ? photo : `/assests/images/${photo}`}
-                                alt={`Gallery ${index + 1}`}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                              />
+                              {(() => {
+                                const v = photo
+                                const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                                return (
+                                  <img
+                                    src={src}
+                                    alt={`Gallery ${index + 1}`}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                  />
+                                )
+                              })()}
                             </button>
                           </motion.div>
                         ))}
@@ -363,12 +381,18 @@ export default function NewsPage() {
               className="relative max-w-5xl w-[92vw] aspect-[16/9] glass rounded-xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={lightboxImages[lightboxIndex] && lightboxImages[lightboxIndex].startsWith('data:') ? lightboxImages[lightboxIndex] : `/assests/images/${lightboxImages[lightboxIndex]}`}
-                alt={`Image ${lightboxIndex + 1} of ${lightboxImages.length}`}
-                className="w-full h-full object-contain bg-black/50"
-                draggable={false}
-              />
+              {(() => {
+                const v = lightboxImages[lightboxIndex]
+                const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                return (
+                  <img
+                    src={src}
+                    alt={`Image ${lightboxIndex + 1} of ${lightboxImages.length}`}
+                    className="w-full h-full object-contain bg-black/50"
+                    draggable={false}
+                  />
+                )
+              })()}
 
               {/* Controls */}
               <button

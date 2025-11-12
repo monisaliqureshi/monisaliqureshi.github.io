@@ -33,13 +33,19 @@ export default function Education() {
             >
               <div className="flex items-start gap-6">
                 <div className="flex-shrink-0">
-                  {edu.logo_filename ? (
-                    <img
-                      src={edu.logo_filename && edu.logo_filename.startsWith('data:') ? edu.logo_filename : `/assests/images/${edu.logo_filename}`}
-                      alt={`${edu.title} logo`}
-                      className="w-20 h-20 rounded-lg object-contain bg-gray-800/50 p-2 border border-purple-500/30"
-                    />
-                  ) : (
+                    {edu.logo_filename ? (
+                      (() => {
+                        const v = edu.logo_filename
+                        const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                        return (
+                          <img
+                            src={src}
+                            alt={`${edu.title} logo`}
+                            className="w-20 h-20 rounded-lg object-contain bg-gray-800/50 p-2 border border-purple-500/30"
+                          />
+                        )
+                      })()
+                    ) : (
                     <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg flex items-center justify-center text-3xl">
                       🎓
                     </div>

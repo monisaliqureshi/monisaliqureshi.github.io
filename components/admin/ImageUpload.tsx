@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { FiUpload, FiX, FiImage } from 'react-icons/fi'
 import { compressFileToDataUrl } from './imageHelpers'
+import Spinner from '@/components/common/Spinner'
+import PhotoCard from './PhotoCard'
 
 interface ImageUploadProps {
   label: string
@@ -97,23 +99,12 @@ export default function ImageUpload({ label, value, onChange, placeholder, requi
       </label>
       
       <div className="space-y-3">
-        {/* Preview */}
-        {preview && (
-          <div className="relative w-32 h-32 glass rounded-lg overflow-hidden group">
-            <img
-              src={preview}
-              alt="Preview"
-              className="w-full h-full object-contain p-2"
-            />
-            <button
-              type="button"
-              onClick={handleRemove}
-              className="absolute top-1 right-1 p-1.5 bg-red-500 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <FiX className="text-sm" />
-            </button>
-          </div>
-        )}
+          {/* Preview */}
+          {preview && (
+            <PhotoCard src={preview} name={label} status={uploading ? 'uploading' : 'done'} onRemove={handleRemove}>
+              {/* optional children area left empty for now */}
+            </PhotoCard>
+          )}
 
         {/* Inline success message */}
         {showSuccess && (
@@ -125,18 +116,18 @@ export default function ImageUpload({ label, value, onChange, placeholder, requi
           <label className="flex-1 cursor-pointer">
             <div className="flex items-center justify-center gap-2 px-4 py-2 glass rounded-lg hover:bg-white/10 transition-all border border-cyan-500/30">
               {uploading ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin"></div>
-                  <span className="text-gray-300">Uploading...</span>
-                </>
-              ) : (
-                <>
-                  <FiUpload className="text-cyan-400" />
-                  <span className="text-gray-300">
-                    {preview ? 'Change Image' : 'Upload Image'}
-                  </span>
-                </>
-              )}
+                  <>
+                    <Spinner size={1} />
+                    <span className="text-gray-300">Uploading...</span>
+                  </>
+                ) : (
+                  <>
+                    <FiUpload className="text-cyan-400" />
+                    <span className="text-gray-300">
+                      {preview ? 'Change Image' : 'Upload Image'}
+                    </span>
+                  </>
+                )}
             </div>
             <input
               type="file"

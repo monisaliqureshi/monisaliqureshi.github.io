@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { FiUpload, FiX, FiImage } from 'react-icons/fi'
 import { compressFileToDataUrl } from './imageHelpers'
+import PhotoCard from './PhotoCard'
 
 interface MultipleImageUploadProps {
   value: string[]
@@ -227,29 +228,21 @@ export default function MultipleImageUpload({
       {items.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {items.map((it) => (
-            <div key={it.id} className="relative group rounded-lg overflow-hidden border-2 border-cyan-500/20 bg-gray-900/50">
-              <div className="aspect-square relative">
-                <img src={it.compressedDataUrl || it.previewUrl} alt={it.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-2 text-xs text-center text-gray-400 truncate">{it.name}</div>
-              <div className="p-2 flex items-center justify-center gap-2">
-                {it.status === 'too_large' && (
-                  <button onClick={() => compressItem(it.id)} className="px-3 py-1 bg-yellow-500 text-white rounded">Compress</button>
-                )}
-                {it.status === 'ready' && (
-                  <button onClick={() => uploadItem(it.id)} className="px-3 py-1 bg-cyan-500 text-white rounded">Upload</button>
-                )}
-                {(it.status === 'compressing' || it.status === 'uploading') && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-                    <div className="text-xs text-white">{it.status === 'compressing' ? 'Reducing size...' : 'Uploading...'}</div>
-                  </div>
-                )}
-                {it.status === 'done' && <div className="text-sm text-green-400">Done</div>}
-                {it.status === 'error' && <div className="text-sm text-red-400">{it.error}</div>}
-              </div>
-              <button onClick={() => removeSelected(it.id)} className="absolute top-1 right-1 p-1.5 rounded-full bg-red-500/80 text-white"> <FiX /> </button>
-            </div>
+            <PhotoCard
+              key={it.id}
+              src={it.compressedDataUrl || it.previewUrl}
+              name={it.name}
+              status={it.status}
+              error={it.error}
+              onRemove={() => removeSelected(it.id)}
+            >
+              {it.status === 'too_large' && (
+                <button onClick={() => compressItem(it.id)} className="px-3 py-1 bg-yellow-500 text-white rounded">Compress</button>
+              )}
+              {it.status === 'ready' && (
+                <button onClick={() => uploadItem(it.id)} className="px-3 py-1 bg-cyan-500 text-white rounded">Upload</button>
+              )}
+            </PhotoCard>
           ))}
         </div>
       )}
@@ -258,12 +251,12 @@ export default function MultipleImageUpload({
       {value.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {value.map((filename, index) => (
-            <div key={index} className="relative group rounded-lg overflow-hidden border-2 border-cyan-500/20 bg-gray-900/50">
-              <div className="aspect-square relative">
-                <img src={filename && filename.startsWith('data:') ? filename : `/assests/images/${filename}`} alt={`Upload ${index + 1}`} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-2 text-xs text-center text-gray-400 truncate">{filename}</div>
-            </div>
+            <PhotoCard
+              key={index}
+              src={filename && filename.startsWith('data:') ? filename : `/assests/images/${filename}`}
+              name={typeof filename === 'string' ? filename : `Image ${index + 1}`}
+              status="done"
+            />
           ))}
         </div>
       )}

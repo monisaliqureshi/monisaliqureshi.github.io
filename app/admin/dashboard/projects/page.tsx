@@ -187,12 +187,16 @@ export default function ProjectsAdmin() {
                 />
               </div>
 
-              <ImageUpload
-                label="Project Thumbnail"
-                value={formData.thumbnail_filename}
-                onChange={(filename) => setFormData({ ...formData, thumbnail_filename: filename })}
-                placeholder="e.g., project-screenshot.png"
-              />
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Project Thumbnail URL</label>
+                <input
+                  type="url"
+                  value={formData.thumbnail_filename}
+                  onChange={(e) => setFormData({ ...formData, thumbnail_filename: e.target.value })}
+                  className="w-full px-4 py-2 glass rounded-lg focus:ring-2 focus:ring-cyan-500 focus:outline-none transition-all text-white placeholder-gray-500"
+                  placeholder="https://example.com/thumbnail.png"
+                />
+              </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-300">

@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 import ExperienceAccordion from "../../containers/experienceAccordion/ExperienceAccordion.js";
 import "./Experience.css";
 import { experience } from "../../portfolio.js";
-import { Fade } from "react-reveal";
+import { Fade } from "@/lib/RevealShim";
 import ExperienceImg from "./ExperienceImg";
 
 function Experience(props) {

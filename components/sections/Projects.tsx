@@ -36,11 +36,17 @@ export default function Projects() {
             >
               {project.thumbnail_filename && (
                 <div className="mb-4 -mx-6 -mt-6">
-                  <img
-                    src={project.thumbnail_filename && project.thumbnail_filename.startsWith('data:') ? project.thumbnail_filename : `/assests/images/${project.thumbnail_filename}`}
-                    alt={`${project.name} thumbnail`}
-                    className="w-full h-48 object-cover rounded-t-2xl border-b-2 border-purple-500/20"
-                  />
+                  {(() => {
+                    const v = project.thumbnail_filename
+                    const src = v && v.startsWith('data:') ? v : (v && (v.startsWith('http://') || v.startsWith('https://')) ? v : `/assests/images/${v}`)
+                    return (
+                      <img
+                        src={src}
+                        alt={`${project.name} thumbnail`}
+                        className="w-full h-48 object-cover rounded-t-2xl border-b-2 border-purple-500/20"
+                      />
+                    )
+                  })()}
                 </div>
               )}
               <h3 className="text-xl font-bold mb-4 text-white">
